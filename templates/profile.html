@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Профиль</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .info { background: #e9ecef; padding: 20px; border-radius: 5px; }
+        .flash { padding: 10px; margin: 10px 0; }
+        .success { background: #d4edda; color: #155724; }
+        .info-message { background: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <h1>Профиль пользователя</h1>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+    {% endwith %}
+    
+    <div class="info">
+        <p><strong>Имя пользователя:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Дата регистрации:</strong> {{ user.created_at.strftime('%d.%m.%Y') }}</p>
+    </div>
+    
+    <p><a href="/logout">Выйти</a></p>
+    <p><a href="/">На главную</a></p>
+</body>
+</html>
